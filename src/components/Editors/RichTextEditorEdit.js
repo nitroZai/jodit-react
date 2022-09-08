@@ -5,13 +5,14 @@ import baseUrl from "../../common/url";
 
 const RichTextEditorEdit = ({ setValue, value, id, saveEditValue }) => {
   const [config, setConfig] = useState({
-    //   buttons: ["Bold", "Italic"],
+    buttons: ["Bold", "Italic"],
     readonly: true,
     uploader: {
       insertImageAsBase64URI: true,
     },
     toolbarInlineForSelection: true,
     showPlaceholder: true,
+    buttons: ["bold", "italic"],
   });
 
   const [isSaved, setIsSaved] = useState(true);
