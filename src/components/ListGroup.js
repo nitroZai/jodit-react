@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000/";
+import { Link } from "react-router-dom";
+import baseUrl from "../common/url";
 
 const ListGroup = () => {
   let [policies, setPolicies] = useState([{}]);
@@ -32,7 +33,7 @@ const ListGroup = () => {
         // console.log("fasdfds", policies);
         return (
           <li className="list-group-item" key={policy.id}>
-            {policy.by_who}
+            <Link to={`/edit/${parseInt(policy.id)}`}>{policy.by_who}</Link>
           </li>
         );
       })}

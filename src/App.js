@@ -1,22 +1,23 @@
 import logo from "./logo.svg";
 import "./App.css";
-import RichTextEditor from "./components/RichTextEditor";
+import RichTextEditor from "./components/Editors/RichTextEditor";
 import { useState } from "react";
 import ListGroup from "./components/ListGroup";
+import Header from "./components/Header";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Add from "./components/Add";
+import Edit from "./components/Edit";
 
 function App() {
-  const [value, setValue] = useState("");
-
   return (
-    <div className="row">
-      <div className="col-md-6" style={{ margin: "auto", marginTop: "50px" }}>
-        <div style={{ textAlign: "center" }}>
-          <h3>Rich Text Editor</h3>
-          {/* <RichTextEditor setValue={setValue} value={value}></RichTextEditor> */}
-          <ListGroup />
-        </div>
-        <h3>{value}</h3>
-      </div>
+    <div>
+      <Header></Header>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/add" element={<Add />}></Route>
+        <Route path="/edit/:id" element={<Edit />}></Route>
+      </Routes>
     </div>
   );
 }

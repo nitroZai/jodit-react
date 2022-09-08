@@ -19,7 +19,7 @@ const RichTextEditor = ({ setValue, value }) => {
       ref={editor}
       onChange={(content) => setValue(content)}
       config={config}
-      value={`<b>`}
+      value={value}
     ></JoditEditor>
   );
 };

@@ -24,10 +24,49 @@ class policyAPI(APIView):
         # return Response(policySerial.data)
 
     def post(self, request):
-        return
+
+        RequestData = JSONParser().parse(request)
+        by_who = RequestData['by_who']
+        policy_title = RequestData['policy_title']
+        data = RequestData['data']
+
+        # print(RequestData)
+
+        policy = Policy()
+
+        policy.data = data
+        policy.policy_title = policy_title
+        policy.by_who = by_who
+
+        policy.save()
+
+        return JsonResponse("Printed", safe=False)
+
+class PolicyEditAPI(APIView):
 
     def post(self, request, id):
-        return
+
+        policyData = JSONParser().parse(request)
+        print(policyData)
+
+        data = policyData['data']
 
 
+        policy = Policy.objects.filter(id = id).update(data = data)
+
+        print(data)
+
+        return JsonResponse("Updation done", safe=False)
+
+    def get(self, request, id):
+
+        policy = Policy.objects.get(id = id)
+
+        policySerial = PolicySerializer(policy)
+
+        print(policySerial.data)
+
+        return JsonResponse(policySerial.data, safe=False)
+
+    #
 
